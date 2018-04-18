@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+
+<!-- Content block -->
+{% block content %}
+
+
+      <div class="section section-header">
+          <div class="parallax filter filter-color-red">
+              <div class="container">
+                  <div class="content">
+                      <div class="title-area">
+
+                          <h1 class="title-modern">One Minute Pitch</h1>
+                          <h3>Probably the most stylish bootstrap template in the world!</h2>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+{% endblock%}

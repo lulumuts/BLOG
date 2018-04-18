@@ -7,7 +7,7 @@ class User(db.Model):
     full_name = db.Column(db.String(60))
     email = db.Column(db.String(60),unique=True)
     username=db.Column(db.String(60),unique=True)
-    pass_secure = db.Column(db.String(60)))
+    pass_secure = db.Column(db.String(60))
 
     @property
     def password(self):

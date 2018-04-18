@@ -1,6 +1,9 @@
+from flask import Flask, render_template
 from . import main
 
 @main.route('/')
 def index():
-    return '<h1> Hello World </h1>'
 
+    title = 'Start your blog journey here'
+
+    return render_template('index.html', title=title)
