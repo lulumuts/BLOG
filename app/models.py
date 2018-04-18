@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash,check_password_hash
 from . import db
 
 class User(db.Model):
@@ -6,7 +7,18 @@ class User(db.Model):
     full_name = db.Column(db.String(60))
     email = db.Column(db.String(60),unique=True)
     username=db.Column(db.String(60),unique=True)
-    password=db.Column(db.String(60),unique=True)
+    pass_secure = db.Column(db.String(60)))
+
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
+
+    @password.setter
+    def password(self,password):
+        self.pass_secure = generate_password_hash(password)
+
+    def verify_password(self,password):
+        return check_password_hash(self.pass_secure,password)
 
     def __repr__(self):
         return f'User {self.username}'
