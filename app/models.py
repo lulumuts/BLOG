@@ -11,10 +11,9 @@ class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key = True)
-    full_name = db.Column(db.String(60))
-    email = db.Column(db.String(60),unique=True)
-    username=db.Column(db.String(60),unique=True)
-    password_hash = db.Column(db.String(60))
+    email = db.Column(db.String(200),unique=True)
+    username=db.Column(db.String(200),unique=True)
+    password_hash = db.Column(db.String(200))
 
     @property
     def password(self):
