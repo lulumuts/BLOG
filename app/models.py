@@ -15,6 +15,8 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(200),unique=True)
     username=db.Column(db.String(200),unique=True)
     password_hash = db.Column(db.String(200))
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    
 
     @property
     def password(self):
@@ -30,6 +32,17 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
+
+    def __repr__(self):
+        return f'User {self.name}'
+
 class Posts(db.Model):
     __tablename__='posts'
 
@@ -38,6 +51,11 @@ class Posts(db.Model):
     content = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save_review(self):
+    db.session.add(self)
+    db.session.commit()
+
 
     def __repr__(self):
         return f'User {self.username}'
