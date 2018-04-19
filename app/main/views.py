@@ -10,8 +10,9 @@ import markdown2
 def index():
 
     title = 'Start your blog journey here'
+    post=Posts.query.all()
 
-    return render_template('index.html', title=title)
+    return render_template('index.html', title=title,post = post)
 
 @main.route('/posts', methods = ['GET','POST'])
 @login_required
