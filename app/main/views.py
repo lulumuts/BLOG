@@ -37,8 +37,7 @@ def new_post():
 
 @main.route('/posts/<int:id>')
 def single_post(id):
-    post=Post.query.get(id)
-    if post is None:
-        abort(404)
+    post=Posts.query.get(id)
+
     format_post = markdown2.markdown(post.content,extras=["code-friendly", "fenced-code-blocks"])
-    return render_template('new-posts.html',content = content,format_post=format_post)
+    return render_template('new_post.html',format_post=format_post)
