@@ -21,6 +21,7 @@
                 <ul class="nav navbar-nav navbar-right navbar-uppercase">
                   {% if current_user.is_authenticated %}
                   <li>{{current_user.username}}</li>
+                  <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
                   {% else %}
                     <li>
                         <a href="{{url_for('auth.login')}}">Sign in</a>
