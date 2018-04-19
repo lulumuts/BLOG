@@ -3,6 +3,7 @@ from . import main
 from flask_login import login_required,current_user
 from ..models import User,Posts
 from ..import db
+from .forms import PostsForm
 
 @main.route('/')
 def index():
@@ -11,23 +12,24 @@ def index():
 
     return render_template('index.html', title=title)
 
-# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-# @login_required
-# def new_review(id):
-#     form= ReviewForm()
-#
-#     movie= get_movie(id)
-#
-#     if form.validate_on_submit():
-#         title = form.title.data
-#         review = form.review.data
-#
-#         # updated review instance
-#         new_review = Review(movie_id=movie.id,movie_title=title,image_path=movie.poster,movie_review=review,user=current_user)
-#
-#         #save review method
-#         new_review.save_review()
-#         return redirect(url_for('.movie',id = movie.id ))
-#
-#     title = f'{movie.title} review'
-#     return render_template('new_review.html',title= title, review_form=form, movie=movie)
+@main.route('/posts', methods = ['GET','POST'])
+@login_required
+def new_post():
+
+    form= PostsForm()
+
+
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
+
+
+        # updated review instance
+        new_post = Posts(title=title,content = content,user_id=current_user.id)
+
+        #save review method
+        new_post.save_post()
+        return redirect(url_for('.index'))
+
+    title = f'{Posts.title}'
+    return render_template('posts.html',title= title, posts_form=form )

@@ -16,7 +16,7 @@ class User(UserMixin,db.Model):
     username=db.Column(db.String(200),unique=True)
     password_hash = db.Column(db.String(200))
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    
+
 
     @property
     def password(self):
@@ -53,8 +53,8 @@ class Posts(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
     def save_review(self):
-    db.session.add(self)
-    db.session.commit()
+        db.session.add(self)
+        db.session.commit()
 
 
     def __repr__(self):
