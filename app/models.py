@@ -52,7 +52,7 @@ class Posts(db.Model):
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
-    def save_review(self):
+    def save_post(self):
         db.session.add(self)
         db.session.commit()
 
