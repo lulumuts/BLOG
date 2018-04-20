@@ -68,9 +68,9 @@ class Comments(db.Model):
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     posts_id = db.Column(db.Integer,db.ForeignKey("posts.id"))
 
-    def save_comment(self):
-        db.session.add(self)
-        db.session.commit()
+    # def save_comment(self):
+    #     db.session.add(self)
+    #     db.session.commit()
 
     def __repr__(self):
         return f'User {self.username}'

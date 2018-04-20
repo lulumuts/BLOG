@@ -62,7 +62,7 @@ def single_post(id):
         #save review method
         db.session.add(new_comment)
         db.session.commit()
-        return redirect(url_for('single_post()'))
+        return redirect(url_for('.single_post',id = post.id))
 
 
 
