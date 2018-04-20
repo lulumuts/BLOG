@@ -43,20 +43,38 @@ def new_post():
     title = f'{Posts.title}'
     return render_template('posts.html',title= title, posts_form=form )
 
-@main.route('/posts/<int:id>')
+@main.route('/posts/<int:id>',methods = ["GET","POST"])
 def single_post(id):
 
     post=Posts.query.get(id)
     comment=Comments.query.filter_by(posts_id=id).all()
 
+
+    form= CommentsForm()
+    # comment=Comments.query.filter_by(posts_id=id).all()
+
+    if form.validate_on_submit():
+        comment = form.comment.data
+
+        # updated review instance
+        new_comment = Comments(comment = comment,posts_id = id)
+
+        #save review method
+        db.session.add(new_comment)
+        db.session.commit()
+        return redirect(url_for('single_post()'))
+
+
+
     format_post = markdown2.markdown(post.content,extras=["code-friendly", "fenced-code-blocks"])
-    return render_template('new_post.html',format_post=format_post,comment=comment)
+    return render_template('new_post.html',format_post=format_post,comments_form=form,comment=comment)
 
 @main.route('/comments', methods = ['GET','POST'])
 @login_required
 def new_comment():
 
     form= CommentsForm()
+    # comment=Comments.query.filter_by(posts_id=id).all()
 
     if form.validate_on_submit():
         comment = form.comment.data
