@@ -36,7 +36,12 @@ def password(self,password):
 def verify_password(self,password):
     return check_password_hash(self.password_hash,password)
 
-
+def security_context_processor():
+    return dict(
+        admin_base_template=admin.base_template,
+        admin_view=admin.index_view,
+        h=admin_helpers,
+    )
 def __repr__(self):
     return f'User {self.username}'
 
