@@ -3,7 +3,7 @@ from . import main
 from flask_login import login_required,current_user
 from ..models import User,Posts,Comments,Subscription
 from ..import db
-from .forms import PostsForm,CommentsForm
+from .forms import PostsForm,CommentsForm,SubscriptionForm
 import markdown2
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
@@ -94,26 +94,21 @@ def new_comment():
 
 @main.route('/subscription',methods = ["GET","POST"])
 def subscriber():
-    form = SubscriptionForm()
+
+    form= SubscriptionForm()
+
+
     if form.validate_on_submit():
-        subscriber = Subscription(email = form.email.data)
-        db.session.add(email)
-        db.session.commit()
-
-        mail_message("Welcome to our blog!","email/welcome_user",subscription.email, user=user)
-
-        return redirect(url_for('index'))
-        title= "Update on blog"
-    return render_template('index.html',subscription_form = form)
+        email = form.email.data
+        date = form.date.data
 
 
+        # updated review instance
+        new_subscriber = Subscription(email=email,date = date,user_id=current_user.id)
+
+        #save review method
+        new_subscriber.save_subscriber()
+        return redirect(url_for('subscriber'))
 
 
-
-
-# @main.route('/comments/<int:id>')
-# def single_comment(id):
-#     comment=Comments.query.get(id)
-#
-#     format_post = markdown2.markdown(post.content,extras=["code-friendly", "fenced-code-blocks"])
-#     return render_template('new_post.html',format_post=format_post)
+    return render_template('index.html',title= title, subscribe_form=form )

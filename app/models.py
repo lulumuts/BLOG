@@ -25,25 +25,25 @@ class User(UserMixin,db.Model):
 
 
 
-@property
-def password(self):
-    raise AttributeError('You cannot read the password attribute')
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
 
-@password.setter
-def password(self,password):
-    self.password_hash = generate_password_hash(password)
+    @password.setter
+    def password(self,password):
+        self.password_hash = generate_password_hash(password)
 
-def verify_password(self,password):
-    return check_password_hash(self.password_hash,password)
+    def verify_password(self,password):
+        return check_password_hash(self.password_hash,password)
 
-def security_context_processor():
-    return dict(
-        admin_base_template=admin.base_template,
-        admin_view=admin.index_view,
-        h=admin_helpers,
-    )
-def __repr__(self):
-    return f'User {self.username}'
+    def security_context_processor():
+            return dict(
+            admin_base_template=admin.base_template,
+            admin_view=admin.index_view,
+            h=admin_helpers,
+            )
+    def __repr__(self):
+        return f'User {self.username}'
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -88,6 +88,7 @@ class Comments(db.Model):
         return f'User {self.username}'
 
 class Subscription(db.Model):
+
     __tablename__='subscription'
 
     id=db.Column(db.Integer,primary_key=True)
@@ -99,7 +100,3 @@ class Subscription(db.Model):
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Posts, db.session))
 admin.add_view(ModelView(Comments, db.session))
-
-
-def __repr__(self):
-    return f'User {self.username}'
