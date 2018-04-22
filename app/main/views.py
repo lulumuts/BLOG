@@ -5,6 +5,9 @@ from ..models import User,Posts,Comments
 from ..import db
 from .forms import PostsForm,CommentsForm
 import markdown2
+from flask_admin.contrib.sqla import ModelView
+from flask_admin import Admin
+
 
 @main.route('/')
 def index():

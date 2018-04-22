@@ -3,45 +3,65 @@
 
 {% block styles %}
   {{ super() }}
-  <link rel="stylesheet" href="{{url_for('static',filename='css/posts.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/new_posts.css')}}">
 {% endblock %}
 
 {% block content%}
 <div class="container-fluid">
-
-  <div class="row">
-    <div class="col-sm-4">
-
-    </div>
-
+  <div id="post">
     <div class="col-sm-8">
       {{format_post|safe}}
-
-
-    </div>
-
-  </div>
-</div>
-
-  <div class="container">
-    <div class="posts">
-
-    <div class="col-md-4">
-
-      {{ wtf.quick_form(comments_form) }}
-      {{simplemde.load}}
     </div>
   </div>
 </div>
 
 
-<div class="col-sm-8">
-  {{format_post|safe}}
-</div>
+    <div class="container-fluid">
+      <div class="title">
+        <ul style="list-style-type:none;">
+          <li style="font-size:10vh;">{{format_post|safe}}</li>
 
-{% for comment in comment %}
-<li>{{comment.comment}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="posts">
+
+        <div class="col-md-4">
+
+          {{ wtf.quick_form(comments_form) }}
+          {{simplemde.load}}
+        </div>
+      </div>
+    </div>
+
+      <div id="card">
+
+        <p style="margin-left:-20vw;">Your Comments</p>
+        {% for comment in comment %}
+<!-- Card -->
+      <div class="card">
+        <div class="row">
+          <div class="col-md-9">
+
+          <!-- Card content -->
+          <div class="card-body">
+
+          <!-- Title -->
+            <h4 class="card-title"><a>Card title</a></h4>
+            <!-- Text -->
+            <p class="card-text">{{comment.comment}}</p>
+            <!-- Button -->
+            <a href="#" class="btn btn-primary">Button</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Card -->
 {%endfor%}
 
+</div>
 
 {% endblock %}
