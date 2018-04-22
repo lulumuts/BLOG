@@ -19,7 +19,7 @@
     <div class="container-fluid">
       <div class="title">
         <ul style="list-style-type:none;">
-          <li style="font-size:10vh;">{{format_post|safe}}</li>
+          <li style="font-size:10vh;color:white">{{format_post|safe}}</li>
 
         </ul>
       </div>
@@ -28,7 +28,7 @@
     <div class="container-fluid">
       <div class="posts">
 
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-left:5vw;">
 
           {{ wtf.quick_form(comments_form) }}
           {{simplemde.load}}
@@ -36,25 +36,24 @@
       </div>
     </div>
 
-      <div id="card">
-
-        <p style="margin-left:-20vw;">Your Comments</p>
+      <div id="card" style="margin-top:-20vh;">
+        <div class="container">
+        <p style="font-size:3em;margin-left:-30vw;color:black;text-decoration: underline">Your Comments</p>
         {% for comment in comment %}
 <!-- Card -->
-      <div class="card">
+      <div class="card" style="margin-left:31vw;">
         <div class="row">
           <div class="col-md-9">
 
           <!-- Card content -->
           <div class="card-body">
 
-          <!-- Title -->
-            <h4 class="card-title"><a>Card title</a></h4>
+          <ul>
             <!-- Text -->
-            <p class="card-text">{{comment.comment}}</p>
+            <li class="card-text" style="color:white;font-size:2em">{{comment.comment}}</li>
             <!-- Button -->
-            <a href="#" class="btn btn-primary">Button</a>
-
+          </ul>
+        </div>
         </div>
       </div>
     </div>

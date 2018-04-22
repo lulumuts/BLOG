@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body style="background-height:100vh;background-image:url({{url_for('static',filename='img/blog-background.jpg') }})">
     <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" color-on-scroll="200">
         <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
         <div class="container">
@@ -26,7 +26,11 @@
                     <li>
                         <a href="{{url_for('auth.login')}}">Sign in</a>
                   </li>
+
                   {%endif%}
+                  <li>
+                      <a href="{{url_for('main.index')}}">Home</a>
+                </li>
 
 
                 </ul>

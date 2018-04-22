@@ -7,6 +7,7 @@
   {{ super() }}
   <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='css/posts.css')}}">
+
 {% endblock %}
 
 
@@ -20,12 +21,12 @@
                   <div class="content">
                       <div class="title-area">
 
-                          <h1 class="title-modern">Blog Post</h1>
-                          <h3>Start your blogging journey here!</h2>
+                          <h1 class="title-modern" style="font-size:10vh;color:white">Start your blogging journey here!</h1>
+                          <h3 style="font-size:6vh;color:white;opacity:0.5;text-decoration: underline">Posts to Read:</h2>
                             {% for post in post %}
 
-                            <li>{{post.title}}</li>
-                            <p><a href="/posts/{{post.id}}">leave a comment!</a></p>
+                            <li style="list-style-type:none;font-size:2em">{{post.title}}</li>
+                            <p><a href="/posts/{{post.id}}" style="color:white;">Read More!</a></p>
                             {% endfor%}
 
 
