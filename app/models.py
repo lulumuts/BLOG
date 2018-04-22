@@ -84,6 +84,17 @@ class Comments(db.Model):
     # def save_comment(self):
     #     db.session.add(self)
     #     db.session.commit()
+    def __repr__(self):
+        return f'User {self.username}'
+
+class Subscription(db.Model):
+    __tablename__='subscription'
+
+    id=db.Column(db.Integer,primary_key=True)
+    email=db.Column(db.String(200))
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+
+
 
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Posts, db.session))

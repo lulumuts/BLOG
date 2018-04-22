@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_simplemde import SimpleMDE
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
+from flask_mail import Mail,Message
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -15,6 +16,7 @@ bootstrap = Bootstrap()
 db = SQLAlchemy()
 simple = SimpleMDE()
 admin = Admin()
+mail = Mail()
 
 
 def create_app(config_state):
@@ -27,6 +29,7 @@ def create_app(config_state):
     login_manager.init_app(app)
     simple.init_app(app)
     admin.init_app(app)
+    mail.init_app(app)
 
 
 

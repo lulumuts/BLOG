@@ -1,7 +1,7 @@
 from flask import Flask, render_template,redirect, url_for
 from . import main
 from flask_login import login_required,current_user
-from ..models import User,Posts,Comments
+from ..models import User,Posts,Comments,Subscription
 from ..import db
 from .forms import PostsForm,CommentsForm
 import markdown2
@@ -48,7 +48,7 @@ def new_post():
 
 @main.route('/posts/<int:id>',methods = ["GET","POST"])
 def single_post(id):
-    
+
     post=Posts.query.get(id)
     comment=Comments.query.filter_by(posts_id=id).all()
 
@@ -91,6 +91,24 @@ def new_comment():
 
 
     return render_template('comments.html', comments_form=form )
+
+@main.route('/subscription',methods = ["GET","POST"])
+def subscriber():
+    form = SubscriptionForm()
+    if form.validate_on_submit():
+        subscriber = Subscription(email = form.email.data)
+        db.session.add(email)
+        db.session.commit()
+
+        mail_message("Welcome to our blog!","email/welcome_user",subscription.email, user=user)
+
+        return redirect(url_for('index'))
+        title= "Update on blog"
+    return render_template('index.html',subscription_form = form)
+
+
+
+
 
 
 # @main.route('/comments/<int:id>')

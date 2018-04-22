@@ -1,7 +1,7 @@
 from flask_script import Manager,Shell,Server
 from app import create_app,db
 from flask_migrate import Migrate, MigrateCommand
-from app.models import User,Role,Posts,Comments
+from app.models import User,Role,Posts,Comments,Subscription
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
 
