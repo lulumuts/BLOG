@@ -25,7 +25,7 @@
                             {% for post in post %}
 
                             <li>{{post.title}}</li>
-                            <p><a href="{{url_for('main.new_comment')}}">leave a comment!</a></p>
+                            <p><a href="/posts/{{post.id}}">leave a comment!</a></p>
                             {% endfor%}
 
 

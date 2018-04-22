@@ -48,7 +48,7 @@ def new_post():
 
 @main.route('/posts/<int:id>',methods = ["GET","POST"])
 def single_post(id):
-
+    
     post=Posts.query.get(id)
     comment=Comments.query.filter_by(posts_id=id).all()
 
@@ -70,7 +70,7 @@ def single_post(id):
 
 
     format_post = markdown2.markdown(post.content,extras=["code-friendly", "fenced-code-blocks"])
-    return render_template('new_post.html',format_post=format_post,comments_form=form,comment=comment)
+    return render_template('new_post.html',format_post=format_post,comments_form=form,comment=comment, post=post)
 
 @main.route('/comments', methods = ['GET','POST'])
 @login_required
